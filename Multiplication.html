@@ -1,0 +1,373 @@
+<!Doctype html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ga+Maamli&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jolly+Lodger&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+
+<style>
+body {
+    background-color: mediumspringgreen;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: gold;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-family: "Archivo Black", sans-serif;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #FFFACD;
+    color: #1E90FF;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: gold;
+    color: white;
+    padding: 8px 15px;
+    font-size: 1em;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: "Archivo Black", sans-serif;
+    transition: all 0.3s ease;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: gold;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #FFFACD;
+    color: #1E90FF;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+.active {
+    background-color: #006400;
+    color: white;
+}
+
+header {
+    font-family: "Tektur", sans-serif;
+    text-align: center;
+    padding: 20px 0;
+    background-color: rgba(255,255,255,0.7);
+    margin-bottom: 20px;
+}
+
+.container {
+    padding:5px;
+    display: flex;
+    flex-direction: horizontal;
+    height: 75vh;
+    font-family: "Archivo Black", sans-serif;
+    border-radius: 8px;
+}
+
+.MathLayout {
+    width: 70%;
+}
+
+.Settings {
+    width: 20%;
+    overflow: auto;
+}
+#num1 {
+    text-align: center;
+}
+#num2 {
+    text-align: center;
+}
+#sign {
+    color:red;
+}
+#num2Con {
+    margin-left:10%;
+    margin-right:12%;
+}
+
+#digit1 {
+    width:60%;
+}
+
+#digit2 {
+    margin: auto;
+    width:60%;
+}
+#answerBox {
+    margin-left: 5%;
+    width: 90%;
+}
+button {
+    font-family: "Archivo Black", sans-serif;
+    width: 40%;
+    background-color: #1E90FF;
+    border-radius: 8px;
+}
+button:hover {
+    color: #FFFACD;
+}
+footer {
+    font-size:150%;
+    font-family: forte;
+}
+</style>
+</head>
+<body>
+<header>
+    <h1>Arithmetic Trainer: Multiplication</h1>
+    <nav>
+  <a href="index.html">Home</a>
+        <div class="dropdown">
+            <button class="dropbtn">Mode∇</button>
+            <div class="dropdown-content">
+                <a href="Addition.html">Addition</a>
+                <a href="Subtraction.html">Subtraction</a>
+                <a href="#" class="active">Multiplication</a>
+                <a href="TimesTables.html">Times Tables</a>
+                <a href="Powers.html">Powers</a>
+                <a href="Division.html">Division</a>
+            </div>
+        </div>
+        <a href="about.html">About</a>
+        <a href="ContactMe.html">Contact</a>
+    </nav>
+</header>
+<main>
+
+<div class="container">
+<div class="MathLayout"> 
+
+<div id="score">Score : </div>
+<br>
+<div id="num1">num1</div>
+ <div id="num2"><span id="sign">x</span> <span id="num2Con">num2</span></div>
+<hr>
+<div id="ans"><input type="number" id="answerBox" min="0" value="0"><span id="tickMark"></span></div>
+<br><br>
+<button id="submitButton" onclick="checkAnswer()">Mark (M)</button> <br><br>
+<button id ="solutionButton" onclick ="showSolution()">Show Solution (A)</button><br><br>
+<button id="redoButton" onclick="redoProblem()">Re-do problem (R)</button><br><br>
+<button id = "generateBtn" onclick="getVal()">Generate new problem (G)</button>
+
+<section id="solutionPane">
+
+</section>
+
+</div>
+<div class="Settings"> Settings <hr>
+Digit length:
+<div class="legend">
+        <div class="control-group">
+            <label for="digit1">Num 1</label>
+            <input type="number" id="digit1" min="1" max="7" value="1" step="1">
+        </div>
+<br>
+        <div class="control-group">
+            <label for="digit2">Num 2</label>
+            <input type="number" id="digit2" min="1" max="7" value="1" step="1">
+        </div>
+
+</div>
+
+</div>
+
+
+</main>
+<hr>
+<footer>Zipho Innocent Lunika &copy 2025</footer>
+<script>
+//Okay here is the basic procedure that I will implement:
+//Generate random number based on settings: (make this a function)
+// Update num1 and num2 text;
+// wait for user to submit answer via a button
+// after submit, update score
+// so I will need variables : num1,num2, dig1Settings, dig2Settings, correctAns, userAns
+//new problem runs generate function again!
+
+//Amending Event listeners first to allow for shortcut keys:
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "g" || event.key === "G") {
+    document.getElementById("generateBtn").click();
+  } else if (event.key === "r" || event.key === "R") {
+    document.getElementById("redoButton").click(); 
+  }
+else if (event.key === "a" || event.key === "A") {
+    document.getElementById("solutionButton").click(); 
+  }
+else if (event.key === "m" || event.key === "M") {
+    document.getElementById("submitButton").click(); 
+  }
+});
+
+//main program and functions:
+
+let number1=0;
+let number2=0;
+let dig1Setting2=1;
+let dig2Setting=2;
+let range1 = parseInt(document.getElementById("digit1").value); //default ranges
+let range2 = parseInt(document.getElementById("digit2").value);//default ranges
+console.log(range1);
+let ScoreElement = document.getElementById("score");
+let score = 0;
+let totalTally=0; //keep track of the total number of attempts here
+let trueRange1 = 10;
+let trueRange2 = 10;
+generate(); //the first generation of a random problem!
+
+function getVal()
+{
+trueRange1=10;
+trueRange2=10;
+range1 = parseInt(document.getElementById("digit1").value); //get digit range from input
+range2 = parseInt(document.getElementById("digit2").value);
+for(let i=0;i<range1;i++)
+{
+  if (i >= 1)
+  {
+   trueRange1*=10;
+  }
+}
+//now I'll do similar for digit 2 with a copy and paste
+
+for(let i=0;i<range2;i++)
+{
+  if (i >= 1)
+  {
+   trueRange2*=10;
+  }
+}
+
+
+
+ //alert(trueRange1+" by "+trueRange2); //testing if random range works out!
+
+//finally calling the generate function:
+generate();
+
+}
+
+function generate()
+{
+//alert("We in shorty!");
+clearSolution();
+number1 = Math.floor(Math.random() * (trueRange1- (trueRange1/10))) + (trueRange1/10); //magic formula for number ranges!
+number2 = Math.floor(Math.random() * (trueRange2- (trueRange2/10))) + (trueRange2/10);
+//console.log("range 1 and 2 are "+trueRange1+"; "+trueRange2+" respectively")
+//console.log("we get this for numer 1 ",number1)
+//console.log("we get this for number 2",number2)
+
+number1Label = document.getElementById("num1");
+number2Label = document.getElementById("num2");
+number1Label.textContent = number1;  
+number2Label.innerHTML = '<span id="sign">x</span>' + number2;  
+document.getElementById("answerBox").disabled = false;
+document.getElementById("submitButton").disabled = false;
+}
+
+
+function checkAnswer()
+{
+Ans = number1 * number2;
+getUserAns = parseInt(document.getElementById("answerBox").value);
+document.getElementById("answerBox").disabled = true;
+document.getElementById("submitButton").disabled = true;
+
+if(Ans === getUserAns)
+{
+//alert("correct!")
+document.getElementById("tickMark").innerHTML = "√";
+document.getElementById("tickMark").style.color = "green";
+score++;
+totalTally++;
+}
+else
+{
+
+totalTally++;
+//alert("Wrong!")
+document.getElementById("tickMark").innerHTML = "X";
+document.getElementById("tickMark").style.color = "red";
+}
+
+updateScore();
+}
+
+function updateScore()
+{
+ScoreElement.innerHTML = "Score : "+ score+"/"+totalTally;
+}
+
+function redoProblem()
+{
+clearSolution();
+document.getElementById("answerBox").disabled = false;
+document.getElementById("answerBox").value = 0;
+document.getElementById("submitButton").disabled = false;
+}
+
+function showSolution()
+{
+
+Ans = number1 * number2;
+
+document.getElementById("solutionPane").innerHTML = "<h2>The solution</h2>"+number1 +" x " +number2 + " = "+ Ans;
+
+}
+
+function clearSolution()
+{
+document.getElementById("tickMark").innerHTML = "";
+document.getElementById("solutionPane").innerHTML="";
+}
+</script>
+
+</body>
+<html>
